@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Role;
 use App\Models\User;
 use Livewire\Component;
+use App\Models\Permission;
 use Livewire\WithPagination;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class Utilisateurs extends Component
@@ -16,6 +19,8 @@ class Utilisateurs extends Component
     public $newUser=[]; 
     public $Reset=[]; 
     public $EditUser=[]; 
+    public $EditPermission=[]; 
+    public $rolePermissions = [];
 
 protected $validationAttributes=[ 
     "newUser.name" => "Nom complet",
@@ -63,6 +68,11 @@ return[ 'newUser.name'=>'required',
     public function goToEditUser($id){
         $this->EditUser = User::find($id)->toArray();
         $this->currentPage=EDITFORMPAGE;
+        $this->populateRolePermissions();
+    }
+    public function goToEditPermission($id){
+        $this->EditPermission= User::find($id)->toArray();
+       
     }
     public function goToListUser(){
         $this->currentPage=LISTPAGE;
@@ -122,6 +132,58 @@ public function resetPassword(){
     $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Mot de passe utilisateur réinitialisé avec succès!"]);
 }
 
+public function populateRolePermissions(){
+    $this->rolePermissions["roles"] = [];
+    $this->rolePermissions["permissions"] = [];
+
+    $mapForCB = function($value){
+        return $value["id"];
+    };
+
+   // $roleIds = array_map($mapForCB, User::find($this->EditPermission["id"])->roles->toArray()); // [1, 2, 4]
+    $permissionIds = array_map($mapForCB, User::find($this->EditUser["id"])->permissions->toArray()); // [1, 2, 4]
+
+    // foreach(Role::all() as $role){
+    //     if(in_array($role->id, $roleIds)){
+    //         array_push($this->rolePermissions["roles"], ["role_id"=>$role->id, "role_nom"=>$role->nom, "active"=>true]);
+    //     }else{
+    //         array_push($this->rolePermissions["roles"], ["role_id"=>$role->id, "role_nom"=>$role->nom, "active"=>false]);
+    //     }
+    // }
+
+    foreach(Permission::all() as $permission){
+        if(in_array($permission->id, $permissionIds)){
+            array_push($this->rolePermissions["permissions"], ["permission_id"=>$permission->id, "permission_nom"=>$permission->nom, "active"=>true]);
+        }else{
+            array_push($this->rolePermissions["permissions"], ["permission_id"=>$permission->id, "permission_nom"=>$permission->nom, "active"=>false]);
+        }
+    }
+
+
+    // la logique pour charger les roles et les permissions
+}
+
+
+
+
+public function updateRoleAndPermissions(){
+    //DB::table("user_role")->where("user_id", $this->editUser["id"])->delete();
+    DB::table("permission_user")->where("user_id", $this->EditUser["id"])->delete();
+
+    // foreach($this->rolePermissions["roles"] as $role){
+    //     if($role["active"]){
+    //         User::find($this->editUser["id"])->roles()->attach($role["role_id"]);
+    //     }
+    // }
+
+    foreach($this->rolePermissions["permissions"] as $permission){
+        if($permission["active"]){
+            User::find($this->EditUser["id"])->permissions()->attach($permission["permission_id"]);
+        }
+    }
+
+    $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>" Permissions mise à jour avec succès!"]);
+}
 
 }
         

@@ -31,6 +31,7 @@ Route::group([
         "as"=>"habilitations."
     ],function(){
         Route::get("/utilisateurs", Utilisateurs::class)->name("users.index");
+        
        // Route::get("/utilisateurs",[Utilisateurs::class,'render'])->name("users.index");
       
          
