@@ -78,7 +78,7 @@
             <a href="#" class="nav-link ">
                 <i class="nav-icon fas fa-cogs"></i>
                 <p>
-                Gestion articles
+                Gestion factures
                 <i class="right fas fa-angle-left"></i>
                 </p>
             </a>
@@ -107,12 +107,12 @@
   
       
  
-           <li class="nav-header">LOCATION</li>
+           <li class="nav-header">Fournisseurs</li>
         <li class="nav-item">
             <a href="" class="nav-link ">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
-                Gestion des clients
+                Gestion des fournisseurs
                 </p>
             </a>
         </li>
@@ -120,17 +120,17 @@
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-exchange-alt"></i>
                 <p>
-                Gestion des locations
+                
                 </p>
             </a>
         </li>
 
-        <li class="nav-header">CAISSE</li>
+        <li class="nav-header"></li>
         <li class="nav-item">
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-coins"></i>
                 <p>
-                Gestion des paiements
+               
                 </p>
             </a>
         </li>
