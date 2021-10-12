@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Facture;
 use App\Models\Structure;
 use App\Models\Fournisseur;
+use App\Models\Permission;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -28,9 +29,9 @@ class DatabaseSeeder extends Seeder
         User::find(3)->structures()->attach(3);
         User::find(4)->structures()->attach(4);
 
-        // User::find(1)->role()->attach(1);
-        // User::find(2)->role()->attach(2);
-        // User::find(3)->role()->attach(3);
+        Permission::find(1)->roles()->attach(1);
+        Permission::find(2)->roles()->attach(2);
+        Permission::find(3)->roles()->attach(3);
        
 
 
