@@ -11,4 +11,11 @@ class Fournisseur extends Model
     public function factures(){
         return $this->hasMany(Facture::class); 
     }
+    protected $fillable = [
+        'nom',
+        'email',
+        'prenom',
+        'tel',
+       
+    ];
 }
