@@ -5,6 +5,8 @@ define("LISTPAGE", "liste");
 define("CREATEFORMPAGE", "create");
 define("EDITFORMPAGE", "edit");
 define("RESETPAGE", "reset");
+define("FACTUREPAGE", "listefacture");
+define("USERPAGE", "listeuser");
 define("DEFAULTPASSOWRD", "password");
 function setMenuClass($route, $classe){
     $routeActuel = request()->route()->getName();
