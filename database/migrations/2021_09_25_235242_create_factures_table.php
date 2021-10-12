@@ -16,7 +16,9 @@ class CreateFacturesTable extends Migration
         Schema::create('factures', function (Blueprint $table) {
             $table->id();
             $table->double('montant');
-            $table->dateTime('date');
+            $table->dateTime('dateDebut');
+            $table->dateTime('dateFin');
+            $table->string('etat');
             $table->foreignId('structure_id')->constrained();  
             $table->foreignId('fournisseur_id')->constrained();
             $table->timestamps();
