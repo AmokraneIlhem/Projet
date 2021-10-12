@@ -37,7 +37,7 @@
                       <select class="form-control @error('newFacture.structure_id') is-invalid @enderror" wire:model="newFacture.structure_id" >
                         
                        <option value="">---------</option>
-                        @foreach ($structures as $structure )
+                        @foreach (auth()->User()->structures as $structure )
                      <option value="{{$structure->id}}">{{$structure->libelle}}</option>
                           @endforeach
                     </select>
