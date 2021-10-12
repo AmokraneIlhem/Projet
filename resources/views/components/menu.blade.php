@@ -103,8 +103,8 @@
           </li>
           
         @endcan 
-        @can("employe")
-         <li class="nav-item  ">
+        @cannot('admin','manager') 
+      <li class="nav-item  ">
             <a href="{{ route('home') }}" class="nav-link  {{ setMenuActive('home') }} ">
               <i class="nav-icon fas fa-home"></i>
               <p>
@@ -115,19 +115,16 @@
             
 <li class="nav-header">Factures</li>
         <li class="nav-item">
-            <a href="{{ route('employe.gestion.index')}}" class="nav-link {{ setMenuActive('employe.gestion.index') }}">
+            <a href="{{ route('gestion.index')}}" class="nav-link {{ setMenuActive('gestion.index') }}">
                 <i class="nav-icon fas fa-cogs"></i>
                 <p>
                 Gestion factures
-                <i class="right fas fa-angle-left"></i>
+              
                 </p>
             </a>
             
         </li>
-  
-      
- 
-           <li class="nav-header">Fournisseurs</li>
+ {{-- <li class="nav-header">Fournisseurs</li>
         <li class="nav-item">
             <a href="" class="nav-link ">
                 <i class="nav-icon fas fa-users"></i>
@@ -136,10 +133,10 @@
                 </p>
             </a>
         </li>
-        
+         --}}
 
         
         
-        @endcan
+        @endcannot
         </ul>
       </nav>
