@@ -31,25 +31,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::get('/users', [App\Http\Controllers\usersController::class, 'index'])->name('users');
 Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 Route::get('/chart', [App\Http\Controllers\chartController::class, 'index'])->name('chart');
-// Route::get('sample',function(){
-//     $chart=(new LarapexChart)
-//    ->lineChart()->setTitle('Monthly Invoices')
-   
-//     ->addLine('Factures En cours', \App\Models\Facture::select(DB::raw("COUNT(*) as count"))
-//     ->where("etat","like","0")
-//     ->whereYear("created_at",date('Y'))
-//     ->groupBy(DB::raw("Month(created_at)"))
-//    ->pluck('count')->toArray())
-//    ->addLine('Factures Cloturé', \App\Models\Facture::select(DB::raw("COUNT(*) as count"))
-//    ->where("etat","like","1")
-//    ->whereYear("created_at",date('Y'))
-//    ->groupBy(DB::raw("Month(created_at)"))
-//   ->pluck('count')->toArray())
-//     ->setXAxis(['January', 'February', 'March', 'April', 'May', 'Jun'])
-//     ->setColors(['#ffc63b', '#ff6384']);
-//     return view('sample',compact('chart'));
-// }
-// );
+
 Route::group([
     "middleware"=>["auth","auth.admin"], 
     "as"=>"admin."
@@ -80,10 +62,10 @@ Route::group([
       }
 );
 });
-Route::group([
-    "middleware"=>["auth","auth.employe"], 
-    "as"=>"employe."
-],function(){
+// Route::group([
+//     "middleware"=>["auth","auth.employe"], 
+//     "as"=>"employe."
+// ],function(){
     Route::group(
         ["prefix"=>"gestion",
         "as"=>"gestion."
@@ -92,4 +74,4 @@ Route::group([
        
     }
 );
-});
+// });
