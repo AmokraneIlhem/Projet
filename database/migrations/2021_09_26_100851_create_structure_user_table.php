@@ -15,11 +15,11 @@ class CreateStructureUserTable extends Migration
     {
         Schema::create('structure_user', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();  
-            $table->foreignId('structure_id')->constrained();  
+            $table->foreignId('user_id')->cascadeOnDelete();  
+            $table->foreignId('structure_id')->cascadeOnDelete();  
             $table->timestamps();
         });
-        Schema::enableForeignKeyConstraints(); 
+        //Schema::enableForeignKeyConstraints(); 
     }
 
     /**
