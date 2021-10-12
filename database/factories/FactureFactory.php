@@ -23,7 +23,9 @@ class FactureFactory extends Factory
     {
         return [
             "montant"=>$this->faker->randomNumber(),
-            "date"=>$this->faker->dateTime(),
+            "dateDebut"=>$this->faker->date(),
+            "dateFin"=>$this->faker->date(),
+            "etat"=>rand(0,1),
             "structure_id"=>rand(1,6),
             "fournisseur_id"=> rand(1,5)
         ];
